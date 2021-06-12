@@ -1,0 +1,24 @@
+
+
+Documentação do trabalho realizado:
+
+
+Header
+
+Logo na fonte Poppins, size 26, Suno em medium e Movies em bold.
+
+Cores
+Fundo: #212125;
+Texto branco: #EAEAEA;
+Destaque rosa: #FE3189;
+
+flex, justify-content space-around (não), space-between dentro de um container com margem tipo gutter
+
+Como tamanho total é 1200px (no espaço central)
+
+a margem medida no figma foi de 80px
+
+dei padding de 6.66%
+
+Existe um dropshadown de config:
+x: 0 y: 4 Blur: 25 Spread: 4 color: #000 e 30%

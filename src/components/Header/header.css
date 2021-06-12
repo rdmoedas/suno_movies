@@ -1,0 +1,47 @@
+
+.flex-container {
+    display: flex;
+  }
+  
+header {
+  background-color: #212125;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6.66%;
+  box-shadow: 10px 10px 8px rgba(0,0,0,0.3);
+}
+
+header .header-container {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header .logo {
+  color: #EAEAEA;
+  font-size: 26px;
+}
+
+header .logo:nth-child(2) {
+  color: #FE3189;
+  font-weight: 700;
+  padding-left: 0.2rem;
+}
+
+header .menu {
+  color: #EAEAEA;
+  font-size: 16px;
+}
+
+header .menu > div{
+  /* padding-left: 3rem; */
+  margin-left: 3rem;
+  line-height: 10vh;
+}
+
+header .active{
+  border-bottom: 2px solid #FE3189;
+}
