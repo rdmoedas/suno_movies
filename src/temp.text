@@ -1,0 +1,43 @@
+        
+        <i class="fas fa-chevron-left arrow"></i>
+          {fetching === true && 'Loading...'}
+          {error !== null && error}
+          {error === null && fetching === false && movies.slice(0, 4).map( (item)=>{
+            return(
+            <div className="carousel-card">
+              <img src={imgPath + item.poster_path} alt="" />
+              <div className="movie-title">{
+                (item.title.length < 20) ? item.title : item.title.slice(0, 17) + '...'
+              }</div>
+              <div className="movie-genre">{item.genre_ids}
+              </div>
+              <div className="movie-vote"><i className="fas fa-star purple-star"></i>{item.vote_average}</div>
+            </div>
+            )
+            })}
+        <i class="fas fa-chevron-right arrow"></i>
+
+
+
+
+
+
+
+
+
+        {adult: false, backdrop_path: "/2VBf6N8deNZIWAMGvR7Pu62D5Al.jpg", genre_ids: Array(3), id: 522406, original_language: "en", …}
+adult: false
+backdrop_path: "/2VBf6N8deNZIWAMGvR7Pu62D5Al.jpg"
+genre_ids: (3) [53, 18, 9648]
+id: 522406
+original_language: "en"
+original_title: "Flashback"
+overview: "Fred é um jovem de quase 30 anos, com a vida adulta cada vez mais eminente, ele passa a se questionar sobre uma série de assuntos aleatórios que, por conta de sua instabilidade emocional, parecem ser extremamente relevantes. Em paralelo, ele tenta desvendar os mistérios relacionados ao sumiço de uma jovem mulher, uma droga chamada Mercury e a uma terrível criatura que o assombra desde a infância."
+popularity: 594.727
+poster_path: "/nc7szo7ChOknEk8qCkABJyNgl5y.jpg"
+release_date: "2021-06-03"
+title: "Flashback"
+video: false
+vote_average: 6.9
+vote_count: 44
+__proto__: Object

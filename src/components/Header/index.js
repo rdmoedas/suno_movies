@@ -1,17 +1,25 @@
-import './header.css'
+import './header.css';
 
-function Header(){
+function Header(props){
+    function searchIcon(){
+        if(props.searchTab === false) {
+            props.setSearchTab(true)
+        } else {
+            props.setSearchTab(false)
+        }
+    }
     return (
         <header>
-            <div className="header-container">
+            <div className="container-header">
                 <div className="flex-container">
                     <div className="logo">SUNO</div>
                     <div className="logo">MOVIES</div>
                 </div>
-                <div className="menu flex-container">
-                    <div className="">INÍCIO</div> 
-                    <div className="active">CATÁLOGO</div> 
-                    <div><i className="fas fa-search"></i></div>
+                <div className="menu">
+                    <img src="" alt="" />
+                    <a href="/"><div className="">INÍCIO</div> </a>
+                    <a href="#full-catalog"><div className="">CATÁLOGO</div> </a>
+                    <div className="search-icon" onClick={searchIcon}><i className={ props.searchTab === true ? 'fas fa-search active-icon' : 'fas fa-search' } ></i></div>
                 </div>
             </div>
         </header>

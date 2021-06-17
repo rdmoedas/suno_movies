@@ -6,54 +6,217 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  width: 100vw;
+  background-color: #1B1B1F;
 }
 
 .background {
   /* width: 1200px; */
-  height: 100vh;
+  height: 600px; /*100vh inicialmente*/
   background-image: url("./section1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
   width: 1200px;
+  margin: auto;
+}
+
+@media only screen and (max-width: 1250px) {
+  .container{
+    width: 700px;
+  }
+
+  .carousel-card img{
+    width: 15vw !important;
+    height: 100% !important;
+  }
+
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 30px;
+}
+
+.arrow {
+  color: #EAEAEA;
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.movie-title {
+  color: #EAEAEA;
+  text-align: left;
+  font-size: 22px;
+  padding-top: 20px;
+}
+
+.movie-genre {
+  color: #FE3189;
+  font-size: 16px;
+  font-weight: 300;
+  padding-top: 6px;
+}
+
+.purple-star {
+  color: #FE3189;
+  padding-right: 12px;
+}
+
+.movie-vote {
+  color: #EAEAEA;
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 6px;
+}
+
+.carousel-card img{
+  width: 218.53px;
+  height: 328.27px;
+  border-radius: 7px;
+}
+
+
+/* Cátalogo Completo */
+
+.catalog-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6.66%;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabs {
+  height: 150px;
+}
+
+.arrow-d {
+  padding-right: 6px;
+}
+
+.tabs button{
+  padding: 20px 30px;
+  color: #EAEAEA;
+  background: rgb(37,33,36);
+  background: linear-gradient(180deg, #252124 0%, #2E2E35 100%);
+  border: 2px solid #2E2D31;
+  border-radius: 7px;
+  margin: 16px;
+}
+
+.active-button{
+  background: #FE3189 !important;
+  box-shadow: 0px 0px 6px #ff0772;
+  border: 0 !important;
+}
+
+button:hover {
+  background-color: #FE3189;
+}
+
+.movie-catalog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 1250px) {
+  .movie-catalog{
+    flex-direction: column;
+  }
+  .movie-description{
+    width: 40vw;
+  }
+  .movie-card {
+    justify-content: center;
+  }
+}
+
+/* Movie Cards */
+
+.movie-card {
+  display: flex;
+  padding: 16px;
+}
+
+.movie-card-width {
+  width: 50%;
+}
+
+.movie-card img {
+  width: 218.53px;
+  height: 328.27px;
+  border-radius: 7px;
+}
+
+.button-more {
+  padding: 20px 30px;
+  color: #EAEAEA;
+  background: #FE3189 !important;
+  box-shadow: 0px 0px 6px #ff0772;
+  border: 0 !important;
+  border-radius: 7px;
+  margin-top: 10%;
+  margin-bottom: 15%;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  padding: 0 16px;
+}
+
+.movie-title {
+  color: #EAEAEA;
+  font-weight: 600;
+  padding: auto;
+
+}
+
+.movie-description {
+  color: #9F9FA0;
+  font-size: 14px;
+  padding: 10px 0;
 }

@@ -1,3 +1,33 @@
+# Projeto SUNO MOVIES
+
+desenvolvido por Rodolfo Santana
+
+## Documentação
+
+Esse projeto foi desenvolvido utilizando o Create React App, por conter diversas ferramentas que agragam boas praticas ao app.
+
+Para rodar o app utilize
+
+### `yarn start`
+
+## API
+
+Foi utilizada a API do Movie DB V3 devido a rica documentação presente no site.
+
+Os dados da API são requisitados via fetch e a conexão foi configurada na pasta services, no arquivo movieDb.js
+
+Outros comando inclusos:
+
+### `yarn test`
+
+### `yarn build`
+
+### `yarn eject`
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

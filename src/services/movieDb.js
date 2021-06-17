@@ -20,6 +20,20 @@ export default {
         const response = await fetch(`${API_URL}${genreList}?api_key=${API_KEY}&language=${languageSelection}`);
         const responseJson = response.json();
         return responseJson;
+    },
+    getSearch: async function getSearch(search) {
+        const response = await fetch(`${API_URL}/search/movie?api_key=${API_KEY}&language=${languageSelection}&query=${search}&page=1&include_adult=false`);
+        const responseJson = response.json();
+        return responseJson;
+    },
+    getMovieById: async function getMovieById(id) {
+        const response = await fetch(`${API_URL}/movie/${id}?api_key=${API_KEY}&language=${languageSelection}`);
+        const responseJson = response.json();
+        return responseJson;
+    },
+    getBestMovies: async function getBestMovies() {
+        const response = await fetch(`${API_URL}/movie/top_rated?api_key=${API_KEY}&language=${languageSelection}&page=1`);
+        const responseJson = response.json();
+        return responseJson;
     }
-
 }

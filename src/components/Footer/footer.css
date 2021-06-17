@@ -1,0 +1,22 @@
+.footer-container {
+    background-color: #18181C;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6.66%;
+    /* box-shadow: 10px 10px 8px rgba(0,0,0,0.3); */
+}
+
+.flex-footer {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-footer > div {
+    color: #EAEAEA;
+    font-size: 22px;
+    padding-right: 8px;
+}

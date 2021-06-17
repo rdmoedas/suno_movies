@@ -1,64 +1,161 @@
 import './App.css';
-
 import { useEffect, useState } from 'react';
 
 import Header from './components/Header';
+import Search from './components/Search';
+import Focus from './components/Focus';
+import SectionHeader from './components/SectionHeader';
+import Footer from './components/Footer';
 
 import movieService from './services/movieDb';
-// import './section1.jpg';
-
-/*
-adult: false
-backdrop_path: "/ee83WVGFFihsTRd07j9KIgXFbHF.jpg"
-genre_ids: (3) [28, 35, 53]
-id: 522931
-original_language: "en"
-original_title: "Hitman's Wife's Bodyguard"
-overview: "O casal estranho mais letal do mundo - o guarda-costas Michael Bryce e o assassino de aluguel Darius Kincaid - está de volta em outra missão com risco de vida. Ainda sem licença e sob escrutínio, Bryce é forçado a entrar em ação pela esposa ainda mais volátil de Darius, a infame vigarista internacional Sonia Kincaid. Enquanto Bryce é levado ao limite por seus dois protegidos mais perigosos, o trio se mete em uma trama global e logo descobre que eles são tudo o que se interpõe entre a Europa e um louco vingativo e poderoso."
-popularity: 116.511
-poster_path: "/oht9CZHNDBEu5KitgxUsb0LhQ8v.jpg"
-release_date: "2021-06-10"
-title: "Dupla Explosiva 2"
-video: false
-vote_average: 8
-vote_count: 2
-__proto__: Object
-*/
-
 
 function App() {
   const imgPath = 'https://image.tmdb.org/t/p/w300/';
-
+  const [searchTab, setSearchTab] = useState(false);
+  const [searchMovie, setSearchMovie] = useState([]);
   const [movies, setMovies] = useState([]);
-  // const [activeTab, setActiveTab] = useState('');
+  const [bestMovies, setBestMovies] = useState([]);
+  // const [genreList, setGenreList] = useState([]);
+  const [arrStart, setArrStart] = useState(0);
+  const [arrEnd, setArrEnd] = useState(4);
+  const [arrEndBestM, setArrEndBestM] = useState(7);
+  const [toogleList, setToogleList] = useState('grid')
+  const [error, setError] = useState(null);
+  const [fetching, setFetching] = useState(false);
+
+  const [focusMovie, setFocusMovie] = useState(null);
+
+  // const moviesGenreList = async () => { 
+  //   const list = await movieService.getGenreList();
+  //   setGenreList(list)
+  //   return genreList
+  // }
 
   useEffect(() => {
     const callApi = async () => {
-      const moviesApi = await movieService.getMovies();
-      setMovies(moviesApi.results);
+      try {
+        setFetching(true);
+        const moviesApi = await movieService.getMovies();
+        setMovies(moviesApi.results);
+        setFetching(false);  
+      } catch (error) {
+        setError('Não foi possivel carregar os dados, por favor tente novamente.')
+        setFetching(false);  
+      }
+    }
+    const callApiBestMovies = async () => {
+      try {
+        setFetching(true);
+        const bestMoviesApi = await movieService.getBestMovies();
+        setBestMovies(bestMoviesApi.results);
+        setFetching(false);  
+      } catch (error) {
+        setError('Não foi possivel carregar os dados, por favor tente novamente.')
+        setFetching(false);  
+      }
     }
     callApi();
+    callApiBestMovies();
   }, []);
+
+  function nextMovie() {
+    if(arrEnd === movies.length) {
+      setArrEnd(4);
+      setArrStart(0);
+    } else {
+      setArrEnd(arrEnd + 1);
+      setArrStart(arrStart + 1);
+    }
+  }
+
+  function previousMovie() {
+    if(arrStart === 0) {
+      setArrStart(movies.length - 4);
+      setArrEnd(movies.length);
+    } else {
+      setArrStart(arrStart - 1);
+      setArrEnd(arrEnd - 1);
+    }
+  }
+
+  function loadMoreMovies() {
+    if(arrEndBestM < 19) {
+      setArrEndBestM(arrEndBestM + 6);
+    }
+  }
+
+  function toogleCatalog() {
+    if(toogleList === 'grid') {
+      setToogleList('list');
+  } else {
+      setToogleList('grid');
+  }
+  }
 
   return (
     <div className="App">
-      <Header/>
+      <Header searchTab={searchTab} setSearchTab={setSearchTab}/>
+      {searchTab !== false && <Search searchMovie={searchMovie} setSearchMovie={setSearchMovie}/>}
+      {focusMovie !== null ? <Focus focusMovie={focusMovie}/> : 
+      <>
       <div className="background">
-        <div className="container">
-          {movies.map( (item)=>{
+
+
+
+        <div className="carousel container">
+        <i className="fas fa-chevron-left arrow" onClick={previousMovie}></i>
+          {fetching === true && 'Loading...'}
+          {error !== null && error}
+          {error === null && fetching === false && movies.slice(arrStart, arrEnd).map( (item)=>{
             return(
-            <div>
-              {console.log(item)}
-              <img src={imgPath + item.poster_path} alt="" />
-              <div>{item.title}</div>
-              <div>{item.genre_ids}</div>
-              <div>{item.vote_average}</div>
+            <div className="carousel-card" key={item.id}>
+              <img src={imgPath + item.poster_path} alt="" onClick={ () => {setFocusMovie(item.id)} }/>
+              <div className="movie-title">{
+                (item.title.length < 20) ? item.title : item.title.slice(0, 16) + '...'
+              }</div>
+              <div className="movie-genre">{item.genre_ids}
+              </div>
+              <div className="movie-vote"><i className="fas fa-star purple-star"></i>{item.vote_average}</div>
             </div>
             )
             })}
+        <i className="fas fa-chevron-right arrow" onClick={nextMovie}></i>
         </div>
       </div>
-
+      <SectionHeader/>
+      <div className="catalog-section">
+        <div className="container flex">
+            <div className="tabs">
+              <div>
+                <button className="button-list"><i className="fas fa-chevron-down arrow-d"></i>por gênero</button>
+                <button className="button-filter active-button">mais populares</button>
+              </div>
+              <button className="button-list" onClick={toogleCatalog}><i className="fas fa-chevron-down arrow-d" ></i>em lista</button>
+            </div>
+            <div className="movie-catalog"> 
+              {fetching === true && 'Loading...'}
+              {error !== null && error}
+              {error === null && fetching === false && bestMovies.slice(1, arrEndBestM).map( (item)=>{
+                return(
+                <div  key={item.id} className={toogleList === "grid" ? "movie-card movie-card-width" : "movie-card"}>
+                  <img src={imgPath + item.poster_path} onClick={ () => {setFocusMovie(item.id)} }  alt="" />
+                  <div className="card-content">
+                    <div className="movie-title">{item.title}</div>
+                    <div className="movie-genre">{item.genre_ids}</div>
+                    <div className="movie-vote"><i className="fas fa-star purple-star"></i>{item.vote_average}</div>
+                    <div className="movie-description">{item.overview}</div>
+                  </div>
+                </div>
+                )
+                })
+              }
+              <button className="button-more" onClick={loadMoreMovies}>carregar mais</button>
+            </div>
+        </div>
+      </div>
+      </>
+      }
+        <Footer/>
     </div>
   );
 }
