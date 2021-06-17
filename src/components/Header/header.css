@@ -1,5 +1,5 @@
 a {
-
+  color: #EAEAEA;
 }
 
 a:visited {
@@ -74,4 +74,5 @@ header .active{
   .container-header{
     width: 700px;
   }
+
 }
